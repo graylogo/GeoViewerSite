@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ChangelogList from '../components/ChangelogList.astro';
+
+const entries = [
+  {
+    version: '0.1.0',
+    date: '2026-10-21',
+    tag: '新增' as const,
+    changes: [
+      '首个可用版本：打开文件或文件夹，查看照片的完整 EXIF 信息',
+      '地图以缩略图标记展示照片，缩放时自动聚合并显示张数',
+      '定位模式：选中照片后点地图即可设置位置，支持撤销与批量',
+      '手输经纬度、复制粘贴坐标，支持多选批量定位与删除位置',
+      'JPEG / TIFF 字节级 EXIF 编辑，HEIC 元数据复制不重编码，只改 GPS',
+      '保存前自动备份原文件，写入后回读校验位置是否生效',
+      '检查器显示机型、镜头、焦距、光圈、快门、ISO、拍摄时间与中文地名',
+      '命令行模式：dump / set-location / clear-location',
+      '中文本地化界面与提示文案',
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="更新日志 — GeoViewer"
+  description="GeoViewer 的版本更新记录，最新版本在最上方。"
+>
+  <section class="border-b border-neutral-200 bg-neutral-50 py-16">
+    <div class="container-page">
+      <h1 class="text-3xl font-semibold tracking-tight sm:text-4xl">更新日志</h1>
+      <p class="mt-4 max-w-2xl text-base leading-7 text-neutral-600">
+        每次发版都会同步到这里。版本号以本页与下载页为准。
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container-page max-w-3xl">
+      <ChangelogList items={entries} />
+    </div>
+  </section>
+</BaseLayout>

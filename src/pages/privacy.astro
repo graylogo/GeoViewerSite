@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="隐私说明 — GeoViewer"
+  description="GeoViewer 的隐私说明：全部在本机处理，不上传照片、文件路径与位置数据，无账号、无遥测、无广告。"
+>
+  <section class="border-b border-neutral-200 bg-neutral-50 py-16">
+    <div class="container-page">
+      <h1 class="text-3xl font-semibold tracking-tight sm:text-4xl">隐私说明</h1>
+      <p class="mt-4 max-w-2xl text-base leading-7 text-neutral-600">
+        一句话：GeoViewer 不会把你的照片、文件路径或位置数据发到任何服务器。
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container-page max-w-3xl doc">
+      <h2>我们收集什么</h2>
+      <p>什么都不收集。应用内没有账号系统，没有遥测，没有崩溃上报，没有广告 SDK。</p>
+
+      <h2>照片如何处理</h2>
+      <ul>
+        <li>所有读取、解析与写入都在你的 Mac 上完成，使用系统 ImageIO / MapKit / CoreLocation</li>
+        <li>照片文件不会被上传，也不会被复制到除备份目录以外的任何位置</li>
+        <li>写入前生成的备份放在本机 <code>~/Pictures/GeoViewer 备份/</code>，你可以随时删除</li>
+      </ul>
+
+      <h2>位置数据如何处理</h2>
+      <ul>
+        <li>把坐标显示为中文地名时，会调用系统逆地理编码服务，该请求只包含经纬度，不含照片内容或文件路径</li>
+        <li>不使用第三方地图或第三方定位服务，也不保存位置历史</li>
+      </ul>
+
+      <h2>网络与权限</h2>
+      <ul>
+        <li>应用不申请通讯录、日历、照片图库等权限</li>
+        <li>除系统逆地理编码外，不会主动发起任何网络请求</li>
+        <li>下载与更新由 GitHub Releases 提供，应用本身不含自动更新组件</li>
+      </ul>
+
+      <h2>官网</h2>
+      <p>
+        你现在访问的站点是纯静态页面，不使用 Cookie 追踪，不嵌入第三方统计脚本。
+      </p>
+
+      <h2>变更</h2>
+      <p>如果以后出现任何数据收集行为，会先在本页明确说明，并在更新日志中记录。</p>
+    </div>
+  </section>
+</BaseLayout>

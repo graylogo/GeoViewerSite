@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import FeatureSection from '../components/FeatureSection.astro';
+import PricingOrLicense from '../components/PricingOrLicense.astro';
+import release from '../data/release.json';
+
+const highlights = [
+  {
+    icon: 'map',
+    title: '地图就是相册',
+    desc: '照片以缩略图形式落在地图上，缩放时自动聚合并显示数量，像「照片」App 一样一眼看到拍在哪里。',
+  },
+  {
+    icon: 'shield',
+    title: '只改 GPS',
+    desc: 'JPEG / TIFF 走字节级 EXIF 编辑，HEIC 走元数据复制不重编码，其余元数据与像素一个字节都不动。',
+  },
+  {
+    icon: 'bolt',
+    title: '放心改、可回退',
+    desc: '定位模式避免误触；修改先暂存，统一保存；写入前自动备份，写完回读校验，支持撤销。',
+  },
+  {
+    icon: 'columns',
+    title: '三栏一目了然',
+    desc: '左侧列表、中间地图、右侧检查器，尺寸、机型、镜头、拍摄时间与中文地名一次看完。',
+  },
+  {
+    icon: 'stack',
+    title: '批量处理',
+    desc: '多选照片后一次定位，支持复制粘贴坐标、手输经纬度，适合整理一整个文件夹。',
+  },
+  {
+    icon: 'terminal',
+    title: '还有命令行',
+    desc: '内置 dump / set-location / clear-location，便于脚本批处理与自动化校验。',
+  },
+];
+
+const howItWorks = [
+  {
+    icon: 'check',
+    title: '打开文件或文件夹',
+    desc: '用「打开…」，或直接把文件夹拖到 Dock 图标、拖进窗口。支持 JPEG / HEIC / HEIF / TIFF / PNG / RAW。',
+  },
+  {
+    icon: 'pin',
+    title: '在地图上确认位置',
+    desc: '带 GPS 的照片会直接落在地图上；点开聚合标记可以看到这一组的缩略图堆叠。',
+  },
+  {
+    icon: 'map',
+    title: '需要时改一下',
+    desc: '选中照片 → 进入定位模式 → 点一下地图即可改位置；也可以手输经纬度或粘贴坐标。',
+  },
+  {
+    icon: 'shield',
+    title: '保存并自动校验',
+    desc: '⌘S 保存，写入前备份原文件，写完后回读确认位置真的生效，再刷新界面。',
+  },
+];
+---
+
+<BaseLayout
+  title="GeoViewer — macOS 上的照片位置查看与编辑工具"
+  description="GeoViewer 是 macOS 原生应用：在地图上以缩略图查看照片位置，需要时只改写 GPS 信息，不动其它元数据与像素。免费、无账号、全部本地处理。"
+>
+  <Hero
+    title="为照片找回正确的地点"
+    subtitle="在地图上以缩略图查看每张照片的拍摄位置，需要时只改写 GPS——JPEG / TIFF 走字节级 EXIF 编辑，HEIC 不重编码，其它元数据一个字节都不动。"
+  />
+
+  <FeatureSection
+    eyebrow="核心能力"
+    title="看清位置，再放心地改"
+    description="不是又一个表格编辑器：先看懂照片在哪里，再决定要不要改。所有修改都可暂存、可撤销、可回退。"
+    items={highlights}
+  />
+
+  <FeatureSection
+    eyebrow="使用流程"
+    title="四步完成一次整理"
+    items={howItWorks}
+    columns={2}
+    tone="gray"
+  />
+
+  <PricingOrLicense />
+
+  <section class="py-20">
+    <div class="container-page">
+      <div class="mx-auto max-w-3xl rounded-2xl border border-neutral-200 bg-white p-10 text-center shadow-sm">
+        <h2 class="section-title">现在就试试</h2>
+        <p class="mt-4 text-base leading-7 text-neutral-600">
+          下载 {release.version} 版 DMG（需要 macOS {release.min_macos}+），
+          打开一个文件夹即可开始。
+        </p>
+        <div class="mt-8 flex flex-wrap justify-center gap-3">
+          <a href="/download" class="btn-primary">前往下载</a>
+          <a href="/docs" class="btn-ghost">阅读文档</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

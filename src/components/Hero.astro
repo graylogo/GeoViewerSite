@@ -1,0 +1,50 @@
+---
+import release from '../data/release.json';
+
+interface Props {
+  title: string;
+  subtitle: string;
+  primaryHref?: string;
+  primaryLabel?: string;
+  secondaryHref?: string;
+  secondaryLabel?: string;
+}
+
+const {
+  title,
+  subtitle,
+  primaryHref = release.dmg,
+  primaryLabel = '下载 DMG',
+  secondaryHref = '/features',
+  secondaryLabel = '查看功能',
+} = Astro.props;
+---
+
+<section class="border-b border-neutral-200 bg-gradient-to-b from-neutral-50 to-white">
+  <div class="container-page py-20 sm:py-28">
+    <div class="mx-auto max-w-3xl text-center">
+      <div class="flex flex-wrap items-center justify-center gap-2">
+        <span class="badge-brand">macOS {release.min_macos}+</span>
+        <span class="badge">版本 {release.version}</span>
+        <span class="badge">Apple Silicon</span>
+      </div>
+
+      <h1 class="mt-6 text-4xl font-semibold tracking-tight sm:text-5xl">{title}</h1>
+      <p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-neutral-600">{subtitle}</p>
+
+      <div class="mt-9 flex flex-wrap items-center justify-center gap-3">
+        <a href={primaryHref} class="btn-primary">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M12 4v12m0 0l-4-4m4 4l4-4M5 20h14" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          {primaryLabel}
+        </a>
+        <a href={secondaryHref} class="btn-ghost">{secondaryLabel}</a>
+      </div>
+
+      <p class="mt-5 text-sm text-neutral-500">
+        免费使用 · 无账号 · 无遥测 · 照片与位置数据全部留在本机
+      </p>
+    </div>
+  </div>
+</section>

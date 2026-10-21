@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FeatureSection from '../components/FeatureSection.astro';
+import PricingOrLicense from '../components/PricingOrLicense.astro';
+
+const viewing = [
+  {
+    icon: 'map',
+    title: '缩略图标记',
+    desc: '照片以缩略图形式钉在地图上，而不是一个个小圆点，找照片时不用逐个点开。',
+  },
+  {
+    icon: 'stack',
+    title: '自动聚合',
+    desc: '缩放时按网格自动合并标记并显示张数，点聚合点可以放大查看这一组，避免密密麻麻互相遮挡。',
+  },
+  {
+    icon: 'globe',
+    title: '标准 / 混合 / 卫星',
+    desc: '三种地图样式随时切换，配合缩放与「显示全部照片」按钮快速定位。',
+  },
+  {
+    icon: 'columns',
+    title: '完整信息面板',
+    desc: '尺寸、文件大小、机型、镜头、焦距、光圈、快门、ISO、拍摄时间、GPS 坐标、海拔与方向。',
+  },
+  {
+    icon: 'pin',
+    title: '中文地名',
+    desc: '使用系统逆地理编码把坐标转成中文地名，方便确认「是不是这个城市」。',
+  },
+  {
+    icon: 'check',
+    title: '搜索与筛选',
+    desc: '按文件名搜索，或只看「没有位置信息」「有未保存修改」的照片。',
+  },
+];
+
+const editing = [
+  {
+    icon: 'bolt',
+    title: '定位模式',
+    desc: '需要改位置时才进入定位模式（⌘L），避免浏览时误点地图把照片改到别处。',
+  },
+  {
+    icon: 'shield',
+    title: '只写 GPS',
+    desc: 'JPEG / TIFF 在字节层修改或追加 GPS IFD，HEIC 复制元数据不重编码，厂商 MakerNotes 等信息完整保留。',
+  },
+  {
+    icon: 'stack',
+    title: '批量与坐标输入',
+    desc: '多选后一次定位；支持 ⌘G 手输经纬度、⌥⌘C / ⌥⌘V 复制粘贴坐标。',
+  },
+  {
+    icon: 'check',
+    title: '暂存与撤销',
+    desc: '修改先暂存（列表上显示橙点），⌘S 统一保存；保存前可 ⌘Z 撤销、⌘⌫ 删除位置。',
+  },
+  {
+    icon: 'globe',
+    title: '自动备份',
+    desc: '写入前把原文件复制到「~/Pictures/GeoViewer 备份」，退出时会提醒尚未保存的修改。',
+  },
+  {
+    icon: 'terminal',
+    title: '命令行',
+    desc: '内置 dump / set-location / clear-location，方便批处理与回归验证。',
+  },
+];
+
+const safety = [
+  {
+    icon: 'shield',
+    title: '写后回读校验',
+    desc: '保存后立即重新读取文件，确认目标位置真的写入成功，否则明确报错。',
+  },
+  {
+    icon: 'check',
+    title: '只读格式保护',
+    desc: 'RAW / PNG 等无法安全写入的格式只允许查看，界面上有锁标提示，不会被误改。',
+  },
+  {
+    icon: 'columns',
+    title: '保留文件属性',
+    desc: '写入后用系统 API 替换原文件，保留创建时间、权限与扩展属性，不产生临时垃圾文件。',
+  },
+];
+---
+
+<BaseLayout
+  title="功能 — GeoViewer"
+  description="GeoViewer 的功能一览：地图缩略图与聚合、只改 GPS 的写入策略、批量定位、自动备份与校验、命令行工具。"
+>
+  <section class="border-b border-neutral-200 bg-neutral-50 py-16">
+    <div class="container-page">
+      <h1 class="text-3xl font-semibold tracking-tight sm:text-4xl">功能</h1>
+      <p class="mt-4 max-w-2xl text-base leading-7 text-neutral-600">
+        一个只做一件事的工具：看清照片的拍摄位置，并在需要时安全地改掉它。
+      </p>
+    </div>
+  </section>
+
+  <FeatureSection eyebrow="查看" title="先看清楚拍在哪里" items={viewing} />
+  <FeatureSection eyebrow="编辑" title="改位置，但不碰其它信息" items={editing} tone="gray" />
+  <FeatureSection eyebrow="安全" title="每一处可回退的设计" items={safety} columns={3} />
+
+  <PricingOrLicense />
+</BaseLayout>

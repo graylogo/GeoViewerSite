@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import DownloadCard from '../components/DownloadCard.astro';
+import release from '../data/release.json';
+---
+
+<BaseLayout
+  title="下载 — GeoViewer"
+  description={`下载 GeoViewer ${release.version}（macOS ${release.min_macos}+）。DMG 安装包、SHA-256 校验值与安装步骤。`}
+>
+  <section class="border-b border-neutral-200 bg-neutral-50 py-16">
+    <div class="container-page">
+      <h1 class="text-3xl font-semibold tracking-tight sm:text-4xl">下载</h1>
+      <p class="mt-4 max-w-2xl text-base leading-7 text-neutral-600">
+        当前版本 {release.version}，需要 macOS {release.min_macos} 或更高版本，Apple Silicon 原生运行。
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container-page grid gap-10 lg:grid-cols-[minmax(0,1fr)_20rem]">
+      <DownloadCard />
+
+      <aside class="space-y-6">
+        <div class="card">
+          <h2 class="text-base font-semibold">系统要求</h2>
+          <ul class="mt-4 space-y-3 text-sm text-neutral-700">
+            <li class="flex gap-3">
+              <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-400"></span>
+              <span>macOS {release.min_macos} 及以上</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-400"></span>
+              <span>Apple Silicon（arm64）</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-400"></span>
+              <span>约 3 MB，无需安装依赖</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2 class="text-base font-semibold">安装步骤</h2>
+          <ol class="mt-4 space-y-3 text-sm text-neutral-700">
+            <li>1. 下载 DMG 并双击打开</li>
+            <li>2. 把 GeoViewer 拖进「应用程序」</li>
+            <li>3. 首次打开若被拦截：右键 → 打开</li>
+            <li>4. 打开一个文件夹，或直接把照片拖进来</li>
+          </ol>
+        </div>
+
+        <div class="card">
+          <h2 class="text-base font-semibold">自己构建</h2>
+          <p class="mt-3 text-sm leading-6 text-neutral-600">
+            源码完全公开，两条命令即可构建：
+          </p>
+          <pre class="mt-3 overflow-x-auto rounded-lg bg-neutral-900 p-3 text-xs leading-6 text-neutral-100"><code>swift build
+./build_app.sh</code></pre>
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>

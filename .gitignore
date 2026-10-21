@@ -1,0 +1,15 @@
+# 依赖与构建产物
+node_modules/
+dist/
+.astro/
+.netlify/
+
+# 环境变量
+.env
+.env.*
+
+# 系统与编辑器
+.DS_Store
+.vscode/
+.idea/
+*.log

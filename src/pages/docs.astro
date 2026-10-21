@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import release from '../data/release.json';
+---
+
+<BaseLayout
+  title="文档 — GeoViewer"
+  description="GeoViewer 使用文档：打开照片、查看位置、修改位置的完整步骤，支持的图片格式，以及已知限制。"
+>
+  <section class="border-b border-neutral-200 bg-neutral-50 py-16">
+    <div class="container-page">
+      <h1 class="text-3xl font-semibold tracking-tight sm:text-4xl">使用文档</h1>
+      <p class="mt-4 max-w-2xl text-base leading-7 text-neutral-600">
+        适用于 GeoViewer {release.version}（macOS {release.min_macos}+）。
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container-page max-w-3xl doc">
+      <h2>快速开始</h2>
+      <p>三种方式打开照片，任选一种：</p>
+      <ul>
+        <li>菜单「文件 → 打开…」，选择一张照片或一个文件夹</li>
+        <li>把文件夹或照片拖到 Dock 上的 GeoViewer 图标</li>
+        <li>把文件夹或照片直接拖进 GeoViewer 窗口</li>
+      </ul>
+
+      <h2>查看照片信息</h2>
+      <ul>
+        <li>左侧列表显示文件名、缩略图、坐标；带锁标的格式只能查看，不能写入</li>
+        <li>右侧检查器显示尺寸、文件大小、机型、镜头、焦距、光圈、快门、ISO 与拍摄时间</li>
+        <li>有 GPS 的照片会显示海拔、方向，以及逆地理编码得到的中文地名</li>
+        <li>选中照片后按 <code>⌘0</code> 可以让地图定位到这张照片</li>
+      </ul>
+
+      <h2>修改位置</h2>
+      <ul>
+        <li><code>⌘L</code> 进入定位模式，选中照片后在地图上点一下即可设置位置</li>
+        <li><code>⌘G</code> 手动输入经纬度（支持 <code>30.2741,120.1551</code> 这种写法）</li>
+        <li><code>⌥⌘C</code> / <code>⌥⌘V</code> 复制、粘贴坐标到其它照片</li>
+        <li><code>⌘⌫</code> 删除所选照片的位置信息</li>
+        <li>修改会先暂存，列表上出现橙点；<code>⌘S</code> 统一保存，保存前可用 <code>⌘Z</code> 撤销</li>
+      </ul>
+
+      <h2>保存时会发生什么</h2>
+      <ol>
+        <li>把原文件备份到 <code>~/Pictures/GeoViewer 备份/</code></li>
+        <li>写入 GPS：JPEG / TIFF 修改 EXIF 的 GPS 部分，HEIC 复制元数据不重编码</li>
+        <li>用系统 API 替换原文件，保留创建时间、权限与扩展属性</li>
+        <li>重新读取文件，确认位置真的写入成功，再刷新界面</li>
+      </ol>
+
+      <h2>支持的格式</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>格式</th>
+            <th>查看</th>
+            <th>写入位置</th>
+            <th>写入方式</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>JPEG（jpg / jpeg / jpe）</td><td>支持</td><td>支持</td><td>字节级 EXIF 编辑</td></tr>
+          <tr><td>HEIC / HEIF</td><td>支持</td><td>支持</td><td>ImageIO 元数据复制，不重编码</td></tr>
+          <tr><td>TIFF（tif / tiff）</td><td>支持</td><td>支持</td><td>字节级 IFD 编辑</td></tr>
+          <tr><td>PNG</td><td>支持</td><td>不支持</td><td>—</td></tr>
+          <tr><td>RAW（CR2 / NEF / ARW / DNG 等）</td><td>支持</td><td>不支持</td><td>—</td></tr>
+        </tbody>
+      </table>
+
+      <h2>已知限制</h2>
+      <ul>
+        <li>只改写 EXIF 里的 GPS，<strong>不会更新 XMP</strong> 中的位置信息，个别读取 XMP 的软件可能显示旧位置</li>
+        <li>RAW 与 PNG 为只读，界面上会显示锁标</li>
+        <li>还未接入系统「照片」图库，只能处理磁盘上的文件</li>
+        <li>应用目前为 ad-hoc 签名、未公证，首次打开可能需要「右键 → 打开」</li>
+        <li>中文地名依赖系统逆地理编码服务，离线状态下可能不显示</li>
+      </ul>
+
+      <h2>命令行</h2>
+      <p>除界面外，也可以直接用二进制做批处理：</p>
+      <pre class="mt-4 overflow-x-auto rounded-xl bg-neutral-900 p-4 text-xs leading-6 text-neutral-100"><code>GeoViewer --dump photo.jpg
+GeoViewer --set-location 30.2741,120.1551 a.jpg b.heic
+GeoViewer --clear-location c.jpg</code></pre>
+
+      <h2>还有问题？</h2>
+      <p>
+        欢迎到
+        <a class="font-medium text-brand-600 hover:text-brand-700" href="https://github.com/graylogo/GeoViewer/issues" rel="noopener" target="_blank">
+          GitHub Issues
+        </a>
+        反馈，附上照片格式与系统版本即可。
+      </p>
+    </div>
+  </section>
+</BaseLayout>
