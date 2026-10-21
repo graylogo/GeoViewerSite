@@ -15,6 +15,16 @@ const viewing = [
     desc: '缩放时按网格自动合并标记并显示张数，点聚合点可以放大查看这一组，避免密密麻麻互相遮挡。',
   },
   {
+    icon: 'clock',
+    title: '按拍摄时间排序',
+    desc: '每行显示精确到秒的拍摄时间，默认按时间先后排列，连拍的照片会挨在一起。也可以换成按文件名或文件夹路径排。',
+  },
+  {
+    icon: 'scope',
+    title: '街道级缩放',
+    desc: '选中照片后按一下就放大到能看清路的级别，快捷键 ⌘3。',
+  },
+  {
     icon: 'globe',
     title: '标准 / 混合 / 卫星',
     desc: '三种地图样式随时切换，配合缩放与「显示全部照片」按钮快速定位。',
@@ -59,8 +69,8 @@ const editing = [
   },
   {
     icon: 'globe',
-    title: '自动备份',
-    desc: '写入前把原文件复制到「~/Pictures/GeoViewer 备份」，退出时会提醒尚未保存的修改。',
+    title: '原片备份（可选）',
+    desc: '默认关闭。在设置里开启并指定文件夹后，写入前会把原文件复制到「~/Pictures/GeoViewer 备份」。退出时会提醒尚未保存的修改。',
   },
   {
     icon: 'terminal',
@@ -90,7 +100,7 @@ const safety = [
 
 <BaseLayout
   title="功能 — GeoViewer"
-  description="GeoViewer 的功能一览：地图缩略图与聚合、只改 GPS 的写入策略、批量定位、自动备份与校验、命令行工具。"
+  description="GeoViewer 的功能一览：地图缩略图与聚合、只改 GPS 的写入策略、批量定位、可选的原片备份与写入校验、命令行工具。"
 >
   <section class="border-b border-neutral-200 bg-neutral-50 py-16">
     <div class="container-page">

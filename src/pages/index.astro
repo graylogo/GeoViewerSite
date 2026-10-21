@@ -18,8 +18,8 @@ const highlights = [
   },
   {
     icon: 'bolt',
-    title: '放心改、可回退',
-    desc: '定位模式避免误触；修改先暂存，统一保存；写入前自动备份，写完回读校验，支持撤销。',
+    title: '改错了能撤回',
+    desc: '定位模式要手动开启，浏览时不会误改；修改先暂存，⌘Z 撤销，⌘S 统一保存。',
   },
   {
     icon: 'columns',
@@ -56,8 +56,8 @@ const howItWorks = [
   },
   {
     icon: 'shield',
-    title: '保存并自动校验',
-    desc: '⌘S 保存，写入前备份原文件，写完后回读确认位置真的生效，再刷新界面。',
+    title: '保存并回读校验',
+    desc: '⌘S 保存。写完会重新读一次文件，确认位置真的写入成功，再刷新界面。',
   },
 ];
 ---
@@ -73,14 +73,14 @@ const howItWorks = [
 
   <FeatureSection
     eyebrow="核心能力"
-    title="看清位置，再放心地改"
-    description="不是又一个表格编辑器：先看懂照片在哪里，再决定要不要改。所有修改都可暂存、可撤销、可回退。"
+    title="看清位置，再决定要不要改"
+    description="修改先暂存再统一保存，随时可以撤销。原片备份默认关闭，需要时可在设置里开启。"
     items={highlights}
   />
 
   <FeatureSection
     eyebrow="使用流程"
-    title="四步完成一次整理"
+    title="怎么用"
     items={howItWorks}
     columns={2}
     tone="gray"
@@ -91,7 +91,7 @@ const howItWorks = [
   <section class="py-20">
     <div class="container-page">
       <div class="mx-auto max-w-3xl rounded-2xl border border-neutral-200 bg-white p-10 text-center shadow-sm">
-        <h2 class="section-title">现在就试试</h2>
+        <h2 class="section-title">下载</h2>
         <p class="mt-4 text-base leading-7 text-neutral-600">
           下载 {release.version} 版 DMG（需要 macOS {release.min_macos}+），
           打开一个文件夹即可开始。
