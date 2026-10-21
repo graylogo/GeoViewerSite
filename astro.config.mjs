@@ -1,8 +1,9 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
-// TODO: 换成正式域名（Netlify 自定义域或 xxx.netlify.app）
-const SITE = 'https://geoviewer.netlify.app';
+// 正式线上地址（Netlify）。canonical link / OG URL / sitemap 都基于它生成，
+// 换自定义域名时必须同步改这里，否则 SEO 会把规范化 URL 指向旧域名。
+const SITE = 'https://geoviewersite.netlify.app';
 
 export default defineConfig({
   site: SITE,
