@@ -1,7 +1,7 @@
 {
-  "version": "0.1.0",
+  "version": "0.2.0",
   "date": "2026-10-21",
   "min_macos": "14.0",
-  "dmg": "https://github.com/graylogo/GeoViewer/releases/download/v0.1.0/GeoViewer-0.1.0.dmg",
-  "sha256": "d2b07ef54b863d17095e2684c65ef8679bb24db69234a68fde16b27a1306213a"
+  "dmg": "https://github.com/graylogo/GeoViewer/releases/download/v0.2.0/GeoViewer-0.2.0.dmg",
+  "sha256": "1b2a60bf533ecf2e1a7acce3b9f858877989407f86a4d0e22e0164c396374941"
 }
