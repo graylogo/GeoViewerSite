@@ -54,6 +54,35 @@
   }
 }
 
+/* 首屏元素的阶梯式入场：从下方 16px 淡入，由 data-i 控制逐项延迟。
+   系统开启「减弱动态效果」时整体关闭。 */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fade-up {
+  animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.fade-up[data-i='1'] { animation-delay: 0.1s; }
+.fade-up[data-i='2'] { animation-delay: 0.2s; }
+.fade-up[data-i='3'] { animation-delay: 0.3s; }
+.fade-up[data-i='4'] { animation-delay: 0.4s; }
+.fade-up[data-i='5'] { animation-delay: 0.5s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up {
+    animation: none;
+  }
+}
+
 /* 文档页的手写排版样式，避免引入 typography 插件 */
 .doc h2 {
   @apply mt-12 text-2xl font-semibold tracking-tight;

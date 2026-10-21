@@ -20,43 +20,82 @@ const {
 } = Astro.props;
 ---
 
-<section class="border-b border-neutral-200 bg-gradient-to-b from-neutral-50 to-white">
-  <div class="container-page py-20 sm:py-28">
+<section class="relative overflow-hidden bg-gradient-to-b from-neutral-50 to-white">
+  <!-- 顶部柔光，把下面的截图从背景里托起来 -->
+  <div
+    class="pointer-events-none absolute inset-x-0 top-0 h-130"
+    style="background: radial-gradient(70% 100% at 50% 0%, rgba(37, 99, 235, 0.10), transparent 70%);"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="container-page relative pb-24 pt-14 sm:pt-16">
     <div class="mx-auto max-w-3xl text-center">
-      <div class="flex flex-wrap items-center justify-center gap-2">
+      <img
+        class="fade-up mx-auto h-26 w-26 rounded-[22%] shadow-xl ring-1 ring-black/5 sm:h-30 sm:w-30"
+        src="/icon.png"
+        alt="GeoViewer 应用图标"
+        width="120"
+        height="120"
+        data-i="0"
+      />
+
+      <div class="fade-up mt-6 flex flex-wrap items-center justify-center gap-2" data-i="1">
         <span class="badge-brand">macOS {release.min_macos}+</span>
         <span class="badge">版本 {release.version}</span>
         <span class="badge">Apple Silicon</span>
       </div>
 
-      <h1 class="mt-6 text-4xl font-semibold tracking-tight sm:text-5xl">{title}</h1>
-      <p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-neutral-600">{subtitle}</p>
+      <h1 class="fade-up mt-6 text-4xl font-semibold tracking-tight sm:text-5xl" data-i="2">
+        {title}
+      </h1>
 
-      <div class="mt-9 flex flex-wrap items-center justify-center gap-3">
+      <p class="fade-up mx-auto mt-5 max-w-2xl text-lg leading-8 text-neutral-600" data-i="3">
+        {subtitle}
+      </p>
+
+      <div class="fade-up mt-9 flex flex-wrap items-center justify-center gap-3" data-i="4">
         <a href={primaryHref} class="btn-primary">
-          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path d="M12 4v12m0 0l-4-4m4 4l4-4M5 20h14" stroke-linecap="round" stroke-linejoin="round" />
+          <svg
+            class="h-4 w-4"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
+            <path
+              d="M12 4v12m0 0l-4-4m4 4l4-4M5 20h14"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
           {primaryLabel}
         </a>
         <a href={secondaryHref} class="btn-ghost">{secondaryLabel}</a>
       </div>
 
-      <p class="mt-5 text-sm text-neutral-500">
+      <p class="fade-up mt-5 text-sm text-neutral-500" data-i="5">
         免费使用 · 无账号 · 无遥测 · 照片与位置数据全部留在本机
       </p>
     </div>
 
-    <!-- 运行截图：紧跟首屏文案，不做懒加载，进页面就能看到实际界面 -->
-    <div class="mx-auto mt-14 max-w-5xl overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-xl">
-      <img
-        src="/og.jpg"
-        alt="GeoViewer 界面截图：左侧照片列表、中间地图、右侧照片详细信息"
-        width="1440"
-        height="978"
-        decoding="async"
-        class="block w-full"
-      />
+    <!-- 运行截图：紧接首屏文案，用负 margin 上移与文案区轻微重叠形成层次。
+         首屏图片不做懒加载，并标记 fetchpriority="high"，避免进页面时空白。 -->
+    <div class="fade-up relative mx-auto mt-14 max-w-5xl sm:mt-16" data-i="6">
+      <div
+        class="overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-2xl ring-1 ring-black/5"
+      >
+        <img
+          src="/og.jpg"
+          alt="GeoViewer 界面截图：左侧照片列表、中间地图、右侧照片详细信息"
+          width="1440"
+          height="978"
+          decoding="async"
+          fetchpriority="high"
+          class="block w-full"
+        />
+      </div>
     </div>
   </div>
 </section>
