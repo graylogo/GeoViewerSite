@@ -1,6 +1,8 @@
 # GeoViewerSite
 
-GeoViewer 的官方静态网站。Astro + Tailwind CSS 构建，纯静态输出，部署在 Netlify。
+GeoViewer 的前端展示（官方静态官网），主项目见 <https://github.com/graylogo/GeoViewer>。
+
+Astro + Tailwind CSS 构建，纯静态输出，部署在 Netlify。
 
 ## 技术栈
 
